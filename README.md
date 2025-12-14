@@ -17,13 +17,13 @@ A beautiful, fully-featured, and reusable React comment component with nested re
 ## Installation
 
 ```bash
-npm install @your-username/react-comments
+npm install @radiyap/react-tailwindcss-comments
 ```
 
 or
 
 ```bash
-yarn add @your-username/react-comments
+yarn add @radiyap/react-tailwindcss-comments
 ```
 
 **Important:** This component uses Tailwind CSS. Make sure you have Tailwind CSS installed in your project.
@@ -46,7 +46,7 @@ Add the component path to your `tailwind.config.js`:
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/@your-username/react-comments/dist/**/*.{js,jsx}"
+    "./node_modules/@radiyap/react-tailwindcss-comments/dist/**/*.{js,jsx}"
   ],
   theme: {
     extend: {},
@@ -60,15 +60,15 @@ module.exports = {
 Import the component's CSS in your main file:
 
 ```javascript
-import '@your-username/react-comments/dist/index.css';
+import '@radiyap/react-tailwindcss-comments/dist/index.css';
 ```
 
 ## Quick Start
 
 ```jsx
 import React, { useState } from 'react';
-import { CommentSection } from '@your-username/react-comments';
-import '@your-username/react-comments/dist/index.css';
+import { CommentSection } from '@radiyap/react-tailwindcss-comments';
+import '@radiyap/react-tailwindcss-comments/dist/index.css';
 
 function App() {
   const [comments, setComments] = useState([
@@ -154,8 +154,8 @@ interface CommentData {
 'use client';
 
 import { useState } from 'react';
-import { CommentSection } from '@your-username/react-comments';
-import '@your-username/react-comments/dist/index.css';
+import { CommentSection } from '@radiyap/react-tailwindcss-comments';
+import '@radiyap/react-tailwindcss-comments/dist/index.css';
 
 export default function CommentsPage() {
   const [comments, setComments] = useState([]);
@@ -179,8 +179,8 @@ export default function CommentsPage() {
 
 ```jsx
 import { useState } from 'react';
-import { CommentSection } from '@your-username/react-comments';
-import '@your-username/react-comments/dist/index.css';
+import { CommentSection } from '@radiyap/react-tailwindcss-comments';
+import '@radiyap/react-tailwindcss-comments/dist/index.css';
 
 export default function CommentsPage() {
   const [comments, setComments] = useState([]);
@@ -316,7 +316,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
 
-If you encounter any issues or have questions, please file an issue on the [GitHub repository](https://github.com/your-username/react-comments/issues).
+If you encounter any issues or have questions, please file an issue on the [GitHub repository](https://github.com/chrisyap/react-tailwindcss-comments/issues).
 
 ## Changelog
 
