@@ -1,0 +1,54 @@
+{
+  "name": "@chrisyap/react-tailwindcss-comments",
+  "version": "1.0.0",
+  "description": "A beautiful, reusable React comment component with nested replies, likes, and timestamps. Built with Tailwind CSS.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "comments",
+    "comment-component",
+    "nested-comments",
+    "replies",
+    "nextjs",
+    "react-component",
+    "tailwindcss"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "rollup": "^4.9.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^5.3.3",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/react-comments"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/react-comments/issues"
+  },
+  "homepage": "https://github.com/your-username/react-comments#readme"
+}
