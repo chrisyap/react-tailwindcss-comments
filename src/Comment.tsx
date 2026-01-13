@@ -13,6 +13,7 @@ const Comment: React.FC<CommentProps> = ({
   maxDepth = 5,
   isAdmin = false,
   primaryColor,
+  isLoggedIn,
 }) => {
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
@@ -40,7 +41,7 @@ const Comment: React.FC<CommentProps> = ({
 
   const avatarUrl = `https://placehold.co/40x40/${getRandomNonPastelHex()}/fff?text=${getInitials(comment.author)}`;
 
-  const canReply = depth < maxDepth;
+  const canReply = depth < maxDepth && isLoggedIn;
 
   if (comment?.isBlocked) {
     return (

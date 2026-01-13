@@ -56,6 +56,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
             maxDepth={maxDepth}
             isAdmin={isAdmin}
             primaryColor={primaryColor}
+            isLoggedIn={isLoggedIn}
           />
         ))}
       </div>

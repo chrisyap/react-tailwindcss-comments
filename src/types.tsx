@@ -21,6 +21,7 @@ export interface CommentProps {
   maxDepth?: number;
   isAdmin?: boolean;
   primaryColor?: string;
+  isLoggedIn?: boolean;
 }
 
 export interface CommentInputProps {
