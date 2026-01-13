@@ -86,8 +86,8 @@ function App() {
   const handleAddComment = (content, parentId = null) => {
     const newComment = {
       id: Date.now(),
-      author: "Current User",
-      content,
+      author: content.author,
+      content: content.message,
       timestamp: new Date().toISOString(),
       likes: 0,
       replies: []
@@ -125,7 +125,7 @@ export default App;
 | Prop | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
 | `comments` | `CommentData[]` | Yes | - | Array of comment objects |
-| `onAddComment` | `(content: string, parentId?: number \| string) => void` | Yes | - | Callback when a comment is added |
+| `onAddComment` | `(content: { message: string, author: string }, parentId?: number \| string) => void` | Yes | - | Callback when a comment is added |
 | `onLike` | `(commentId: number \| string) => void` | No | - | Callback when a comment is liked |
 | `onDelete` | `(commentId: number \| string) => void` | No | - | Callback when a comment is deleted |
 | `currentUser` | `{ name: string; avatar?: string }` | No | - | Current user information |

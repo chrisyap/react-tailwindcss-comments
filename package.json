@@ -1,6 +1,6 @@
 {
   "name": "@radiyap/react-tailwindcss-comments",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A beautiful, reusable React comment component with nested replies, likes, and timestamps. Built with Tailwind CSS.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

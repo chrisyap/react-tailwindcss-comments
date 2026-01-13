@@ -1,23 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Comment from "./Comment";
 import CommentInput from "./CommentInput";
-import { CommentData } from "./Comment";
+import {
+  CommentData,
+  CommentSectionProps,
+  CommentProps,
+  CommentInputProps,
+} from "./types";
 import "./styles.css";
-
-export interface CommentSectionProps {
-  comments: CommentData[];
-  onAddComment: (content: string, parentId?: number | string) => void;
-  onLike?: (commentId: number | string) => void;
-  onDelete?: (commentId: number | string) => void;
-  currentUser?: {
-    name: string;
-    avatar?: string;
-  };
-  maxDepth?: number;
-  className?: string;
-  isAdmin?: boolean;
-  primaryColor?: string;
-}
 
 export const CommentSection: React.FC<CommentSectionProps> = ({
   comments,
@@ -29,6 +19,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
   className = "",
   isAdmin = false,
   primaryColor,
+  isLoggedIn,
 }) => {
   const getTotalCommentCount = (comments: CommentData[]): number => {
     return comments.reduce((total, comment) => {
@@ -46,13 +37,14 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
         Comments ({getTotalCommentCount(comments)})
       </h2>
 
-      <CommentInput
-        onSubmit={(content) => onAddComment(content)}
-        placeholder="Write a comment..."
-        buttonText="Post Comment"
-        primaryColor={primaryColor}
-      />
-
+      {isLoggedIn && (
+        <CommentInput
+          onSubmit={(content) => onAddComment(content)}
+          placeholder="Write a comment..."
+          buttonText="Post Comment"
+          primaryColor={primaryColor}
+        />
+      )}
       <div className="mt-6 space-y-4">
         {comments.map((comment) => (
           <Comment
@@ -69,4 +61,11 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       </div>
     </div>
   );
+};
+
+export type {
+  CommentData,
+  CommentSectionProps,
+  CommentProps,
+  CommentInputProps,
 };

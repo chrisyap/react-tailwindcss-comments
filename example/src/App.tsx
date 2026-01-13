@@ -119,12 +119,16 @@ const App: React.FC = () => {
     }
   }, [theme]);
 
-  const handleAddComment = (content: string, parentId?: number | string) => {
+  const handleAddComment = (
+    content: { message: string; author: string },
+    parentId?: number | string,
+  ) => {
+    console.log("Adding comment:", content, "Parent ID:", parentId);
     const newComment: CommentData = {
       id: Date.now(),
-      author: "Current User",
+      author: content.author,
       avatar: "https://placehold.co/40x40/8b5cf6/fff?text=CU",
-      content,
+      content: content.message,
       timestamp: new Date().toISOString(),
       likes: 0,
       replies: [],
@@ -146,6 +150,10 @@ const App: React.FC = () => {
   const handleDelete = (commentId: number | string) => {
     setComments((prevComments) => deleteComment(prevComments, commentId));
   };
+
+  useEffect(() => {
+    console.log("Current comments state:", comments);
+  }, [comments]);
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8 transition-colors duration-300 dark:bg-gray-950">

@@ -1,28 +1,8 @@
 import React, { useState } from "react";
 import { Ban, Heart, MessageCircleMore } from "lucide-react";
 import CommentInput from "./CommentInput";
-
-export interface CommentData {
-  id: number | string;
-  author: string;
-  avatar?: string;
-  content: string;
-  timestamp: string;
-  likes: number;
-  isBlocked?: boolean;
-  replies?: CommentData[];
-}
-
-export interface CommentProps {
-  comment: CommentData;
-  onReply: (content: string, parentId: number | string) => void;
-  onLike?: (commentId: number | string) => void;
-  onDelete?: (commentId: number | string) => void;
-  depth?: number;
-  maxDepth?: number;
-  isAdmin?: boolean;
-  primaryColor?: string;
-}
+import { CommentProps } from "./types";
+import { getInitials, getRandomNonPastelHex, formatTimestamp } from "./util";
 
 const Comment: React.FC<CommentProps> = ({
   comment,
@@ -37,7 +17,7 @@ const Comment: React.FC<CommentProps> = ({
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleReply = (content: string) => {
+  const handleReply = (content: { message: string; author: string }) => {
     onReply(content, comment.id);
     setShowReplyInput(false);
   };
@@ -56,61 +36,6 @@ const Comment: React.FC<CommentProps> = ({
     ) {
       onDelete(comment.id);
     }
-  };
-
-  const formatTimestamp = (timestamp: string): string => {
-    const date = new Date(timestamp);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMs / 3600000);
-    const diffDays = Math.floor(diffMs / 86400000);
-
-    if (diffMins < 1) return "Just now";
-    if (diffMins < 60) return `${diffMins}m ago`;
-    if (diffHours < 24) return `${diffHours}h ago`;
-    if (diffDays < 7) return `${diffDays}d ago`;
-
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  };
-
-  const getInitials = (name: string): string => {
-    return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
-  };
-
-  const toHex = (c: number): string => {
-    return c.toString(16).padStart(2, "0");
-  };
-
-  const getRandomNonPastelHex = (): string => {
-    let r: number, g: number, b: number;
-
-    const MAX_BRIGHTNESS_FOR_DEEP = 100; // If max component is below this, it's deep/dark.
-    const MIN_SATURATION_DIFFERENCE = 80; // If max - min is above this, it's saturated.
-
-    do {
-      r = Math.floor(Math.random() * 256);
-      g = Math.floor(Math.random() * 256);
-      b = Math.floor(Math.random() * 256);
-
-      const max: number = Math.max(r, g, b);
-      const min: number = Math.min(r, g, b);
-
-      const isDeep: boolean = max < MAX_BRIGHTNESS_FOR_DEEP;
-
-      const isSaturated: boolean = max - min > MIN_SATURATION_DIFFERENCE;
-
-      if (isDeep || isSaturated) {
-        break;
-      }
-    } while (true); // Loop until a non-pastel color is generated
-
-    return `${toHex(r)}${toHex(g)}${toHex(b)}`;
   };
 
   const avatarUrl = `https://placehold.co/40x40/${getRandomNonPastelHex()}/fff?text=${getInitials(comment.author)}`;
